@@ -11,6 +11,10 @@ import peep.biotic.furnace.TileFastFurnace;
 
 import javax.annotation.Nullable;
 
+
+//Guis both have a client side and a server side.
+//The server side is the container e.g. ContainerFastFurnace
+//This serves as a bridge between client side and server side.
 public class GuiHandler implements IGuiHandler {
 
     @Nullable
