@@ -27,7 +27,7 @@ public class ContainerFastFurnace extends Container {
         // Slots for the main inventory
         for (int row = 0; row < 3; ++row) {
             for (int col = 0; col < 9; ++col) {
-                int x = 9 + col * 18;
+                int x = 10 + col * 18;
                 int y = row * 18 + 70;
                 this.addSlotToContainer(new Slot(playerInventory, col + row * 9 + 10, x, y));
             }
@@ -35,7 +35,7 @@ public class ContainerFastFurnace extends Container {
 
         // Slots for the hotbar
         for (int row = 0; row < 9; ++row) {
-            int x = 9 + row * 18;
+            int x = 10 + row * 18;
             int y = 58 + 70;
             this.addSlotToContainer(new Slot(playerInventory, row, x, y));
         }
@@ -43,25 +43,25 @@ public class ContainerFastFurnace extends Container {
 
     private void addOwnSlots() {
         IItemHandler itemHandler = this.te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-        int x = 9;
-        int y = 22;
+        int x = 10;
+        int y = 23;
 
         int slotIndex = 0;
-        addSlotToContainer(new SlotItemHandler(itemHandler, slotIndex, x, y)); x+=18;
-        addSlotToContainer(new SlotItemHandler(itemHandler, slotIndex, x, y)); x+=18;
-        addSlotToContainer(new SlotItemHandler(itemHandler, slotIndex, x, y));
+        addSlotToContainer(new SlotItemHandler(itemHandler, slotIndex++, x, y)); x+=18;
+        addSlotToContainer(new SlotItemHandler(itemHandler, slotIndex++, x, y)); x+=18;
+        addSlotToContainer(new SlotItemHandler(itemHandler, slotIndex++, x, y));
 
-        x = 117;
-        addSlotToContainer(new SlotItemHandler(itemHandler, slotIndex, x, y)); x+=18;
-        addSlotToContainer(new SlotItemHandler(itemHandler, slotIndex, x, y)); x+=18;
-        addSlotToContainer(new SlotItemHandler(itemHandler, slotIndex, x, y));
+        x = 118;
+        addSlotToContainer(new SlotItemHandler(itemHandler, slotIndex++, x, y)); x+=18;
+        addSlotToContainer(new SlotItemHandler(itemHandler, slotIndex++, x, y)); x+=18;
+        addSlotToContainer(new SlotItemHandler(itemHandler, slotIndex++, x, y));
 
-        // Add our own slots
-        for (int i = 0; i < itemHandler.getSlots(); i++) {
+        // Add our own slots IGNORE THIS
+       /* for (int i = 0; i < itemHandler.getSlots(); i++) {
             addSlotToContainer(new SlotItemHandler(itemHandler, slotIndex, x, y));
             slotIndex++;
             x += 18;
-        }
+        }*/
     }
 
     @Override
@@ -74,10 +74,12 @@ public class ContainerFastFurnace extends Container {
             ItemStack itemstack1 = slot.getStack();
             itemstack = itemstack1.copy();
 
+            //When you shift click from your own furnace inventory to the player inventory.
             if (index < TileFastFurnace.SIZE) {
                 if (!this.mergeItemStack(itemstack1, TileFastFurnace.SIZE, this.inventorySlots.size(), true)) {
                     return ItemStack.EMPTY;
                 }
+                //Shift clicking from player inventory to Fastfurnace inventtory.
             } else if (!this.mergeItemStack(itemstack1, 0, TileFastFurnace.SIZE, false)) {
                 return ItemStack.EMPTY;
             }
