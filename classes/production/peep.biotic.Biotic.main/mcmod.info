@@ -1,0 +1,15 @@
+[
+{
+  "modid": "biotic",
+  "name": "Biotic",
+  "description": "Example placeholder mod.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Peep"],
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
